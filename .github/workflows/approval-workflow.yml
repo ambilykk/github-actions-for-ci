@@ -3,6 +3,15 @@ on: pull_request_review
 
 jobs:
 
-  labelWhenApproved:
+  labelWhenApproved:  
+    runs-on: ubuntu-latest
+    
+  steps:
   
-    run-on: ubuntu-latest
+    - uses: actions/checkout@v2
+    - name: label the commit
+    - uses: pullreminders/label-when-approved-action
+      end:
+        APPROVALS: "1"
+        GITHUB_TOKEN: ${{secret.token}}
+        ADD_LABEL: "Approved"
